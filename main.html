@@ -53,7 +53,7 @@
             <div class="bg-white rounded-lg shadow-md p-6 text-center flex flex-col justify-center">
                 <p class="text-6xl font-extrabold text-[#D8315B]">5.4 L/s</p>
                 <p class="text-xl font-bold mt-2 text-[#0A2463]">Capacidad de Tratamiento</p>
-                <p class="mt-1">Diseñada para una comunidad de 623 usuarios, hoy claramente insuficiente.</p>
+                <p class="mt-1">Diseñada para 623 usuarios, hoy es claramente insuficiente para la demanda real de la vereda.</p>
             </div>
             <div class="bg-white rounded-lg shadow-md p-6 text-center flex flex-col justify-center">
                 <p class="text-6xl font-extrabold text-[#D8315B]">4</p>
@@ -63,7 +63,7 @@
             <div class="bg-white rounded-lg shadow-md p-6 text-center flex flex-col justify-center">
                 <p class="text-6xl font-extrabold text-[#D8315B]">>72h</p>
                 <p class="text-xl font-bold mt-2 text-[#0A2463]">Falla Sistémica</p>
-                <p class="mt-1">En abril de 2025, el servicio colapsó, forzando el uso de carrotanques de emergencia.</p>
+                <p class="mt-1">En abril de 2025, el servicio colapsó por completo, forzando el uso de carrotanques de emergencia.</p>
             </div>
         </div>
 
@@ -256,7 +256,7 @@
 
         const userComplaintsCtx = document.getElementById('userComplaintsChart').getContext('2d');
         const userComplaintsData = {
-            labels: ['Continuidad y Racionamiento', 'Baja Presión', 'Comunicación', 'Calidad del Agua'],
+            labels: ['Continuidad y Racionamiento', ['Baja Presión', '(No sube al tanque)'], 'Comunicación', 'Calidad del Agua'],
             datasets: [{
                 label: 'Número de Quejas',
                 data: [129, 105, 41, 6],
@@ -275,9 +275,16 @@
             data: userComplaintsData,
             options: {
                 ...commonChartOptions,
+                plugins: {
+                    ...commonChartOptions.plugins,
+                    legend: {
+                        ...commonChartOptions.plugins.legend,
+                        position: 'bottom',
+                    }
+                },
                 scales: {
-                    y: { ...commonChartOptions.scales.y, display: false, grid: { display: false } },
-                    x: { ...commonChartOptions.scales.x, display: false, grid: { display: false } }
+                    y: { display: false, grid: { display: false } },
+                    x: { display: false, grid: { display: false } }
                 }
             }
         });
@@ -334,6 +341,7 @@
                         ...commonChartOptions.scales.y,
                         ticks: {
                             ...commonChartOptions.scales.y.ticks,
+                            stepSize: 1,
                             callback: function(value, index, values) {
                                 switch(value) {
                                     case 0: return 'Sin Riesgo';
