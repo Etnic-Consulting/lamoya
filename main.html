@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Crisis del Agua en La Moya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-arrow {
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid #D8315B;
+        }
+        .flowchart-line {
+            width: 2px;
+            background-color: #D8315B;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="bg-[#0A2463] text-white p-8 text-center">
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-2">Crisis del Agua en La Moya</h1>
+        <p class="text-xl md:text-2xl font-light max-w-4xl mx-auto">Radiografía de un Colapso Sistémico Anunciado</p>
+    </div>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6 text-center flex flex-col justify-center">
+                <p class="text-6xl font-extrabold text-[#D8315B]">5.4 L/s</p>
+                <p class="text-xl font-bold mt-2 text-[#0A2463]">Capacidad de Tratamiento</p>
+                <p class="mt-1">Diseñada para una comunidad de 623 usuarios, hoy claramente insuficiente.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 text-center flex flex-col justify-center">
+                <p class="text-6xl font-extrabold text-[#D8315B]">4</p>
+                <p class="text-xl font-bold mt-2 text-[#0A2463]">Meses en "Riesgo Alto"</p>
+                <p class="mt-1">En 2022, el agua fue clasificada como no apta para consumo humano, un grave riesgo para la salud pública.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 text-center flex flex-col justify-center">
+                <p class="text-6xl font-extrabold text-[#D8315B]">>72h</p>
+                <p class="text-xl font-bold mt-2 text-[#0A2463]">Falla Sistémica</p>
+                <p class="mt-1">En abril de 2025, el servicio colapsó, forzando el uso de carrotanques de emergencia.</p>
+            </div>
+        </div>
+
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#0A2463]">La Voz de la Comunidad: Anatomía de las Quejas</h2>
+                <p class="text-center max-w-3xl mx-auto mb-6">El análisis de las comunicaciones de los usuarios entre febrero y agosto de 2025 revela las fallas más críticas del servicio. La falta de continuidad y la baja presión dominan el panorama, evidenciando un sistema sobrecargado e incapaz de cumplir con su función básica.</p>
+                <div class="chart-container">
+                    <canvas id="userComplaintsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#0A2463]">Un Peligro Ignorado: Calidad del Agua en 2022</h2>
+                <p class="text-center max-w-3xl mx-auto mb-6">Datos oficiales del SIVICAP, citados por la Superservicios, muestran un historial alarmante. Durante cuatro meses de 2022, el agua suministrada presentó un "Riesgo Alto", indicando que no era apta para el consumo humano. Las quejas por agua turbia en 2025 sugieren que los problemas de potabilización nunca fueron resueltos de fondo.</p>
+                <div class="chart-container">
+                    <canvas id="waterQualityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#0A2463]">Cronología de una Falla Anunciada (2025)</h2>
+                <p class="text-center max-w-3xl mx-auto mb-6">La crisis no fue súbita. Los registros de comunicación de los usuarios muestran una escalada de problemas que culminó en un colapso total en abril, seguido de una "nueva normalidad" de racionamientos severos e inequitativos.</p>
+                <div class="relative pl-8">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#93B7BE] rounded"></div>
+                    <div class="mb-8 relative">
+                        <div class="absolute -left-[42px] top-0 h-8 w-8 rounded-full bg-[#D8315B] border-4 border-white"></div>
+                        <h3 class="text-xl font-bold text-[#0A2463]">Febrero: Primeras Alarmas</h3>
+                        <p>Inician quejas por mala calidad del agua ("agua turbia") y primeros incumplimientos en los horarios de suministro.</p>
+                    </div>
+                    <div class="mb-8 relative">
+                        <div class="absolute -left-[42px] top-0 h-8 w-8 rounded-full bg-[#D8315B] border-4 border-white"></div>
+                        <h3 class="text-xl font-bold text-[#0A2463]">Marzo: Presión Insostenible</h3>
+                        <p>Se intensifican los reportes de interrupciones de más de 48 horas y baja presión, una admisión implícita de la incapacidad del sistema.</p>
+                    </div>
+                    <div class="mb-8 relative">
+                        <div class="absolute -left-[42px] top-0 h-8 w-8 rounded-full bg-[#D8315B] border-4 border-white"></div>
+                        <h3 class="text-xl font-bold text-[#0A2463]">Abril: Colapso Sistémico</h3>
+                        <p>Falla generalizada del servicio por más de 72 horas. Se implementa un caótico plan de contingencia con carrotanques.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[42px] top-0 h-8 w-8 rounded-full bg-[#D8315B] border-4 border-white"></div>
+                        <h3 class="text-xl font-bold text-[#0A2463]">Mayo - Agosto: Crisis Normalizada</h3>
+                        <p>Se imponen racionamientos más estrictos. La baja presión se convierte en la queja dominante, dejando a muchos sin servicio efectivo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#0A2463]">Un Sistema de Promesas Rotas</h2>
+                <p class="text-center max-w-3xl mx-auto mb-6">A pesar de la acción comunitaria y las intervenciones legales, las soluciones nunca llegaron. La cronología regulatoria demuestra una falla tanto en la gestión del acueducto como en la supervisión de las entidades de control, que no lograron traducir las órdenes judiciales en mejoras reales para la comunidad.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 border-2 border-[#0A2463] rounded-lg w-full md:w-1/4">
+                        <p class="text-5xl mb-2">1</p>
+                        <h3 class="font-bold text-[#0A2463]">Acción Comunitaria</h3>
+                        <p class="text-sm">Sep 2022: Más de 150 usuarios presentan derecho de petición exigiendo transparencia.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-full md:w-auto">
+                        <div class="flowchart-arrow hidden md:block"></div>
+                        <div class="w-1 h-8 bg-[#D8315B] md:hidden"></div>
+                    </div>
+                    <div class="text-center p-4 border-2 border-[#0A2463] rounded-lg w-full md:w-1/4">
+                        <p class="text-5xl mb-2">2</p>
+                        <h3 class="font-bold text-[#0A2463]">Intervención Regulatoria</h3>
+                        <p class="text-sm">Nov 2022: Superservicios inicia investigación por mala calidad y falta de continuidad.</p>
+                    </div>
+                     <div class="flex items-center justify-center w-full md:w-auto">
+                        <div class="flowchart-arrow hidden md:block"></div>
+                        <div class="w-1 h-8 bg-[#D8315B] md:hidden"></div>
+                    </div>
+                    <div class="text-center p-4 border-2 border-[#0A2463] rounded-lg w-full md:w-1/4">
+                        <p class="text-5xl mb-2">3</p>
+                        <h3 class="font-bold text-[#0A2463]">Orden Judicial</h3>
+                        <p class="text-sm">Ene 2023: Un juez ordena al acueducto responder de fondo a las peticiones de la comunidad.</p>
+                    </div>
+                     <div class="flex items-center justify-center w-full md:w-auto">
+                        <div class="flowchart-arrow hidden md:block"></div>
+                         <div class="w-1 h-8 bg-[#D8315B] md:hidden"></div>
+                    </div>
+                    <div class="text-center p-4 bg-[#D8315B] text-white rounded-lg w-full md:w-1/4">
+                        <p class="text-5xl mb-2">4</p>
+                        <h3 class="font-bold">Colapso del Servicio</h3>
+                        <p class="text-sm">2025: A pesar de todo, el sistema falla, demostrando la ineficacia de las medidas anteriores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 text-sm p-4">
+            <p>Análisis basado en el informe "Análisis Operativo, Regulatorio y de Prestación de Servicio del Acueducto Veredal La Moya".</p>
+            <p>Fuentes: Registros de _chat.txt, expedientes judiciales, informes de la Superservicios y Plan Básico de Ordenamiento Territorial de Cota.</p>
+        </footer>
+    </main>
+
+    <script>
+        const FONT_COLOR = '#0A2463';
+        const GRID_COLOR = '#d1d5db';
+        const PALETTE = {
+            blue: '#0A2463',
+            red: '#D8315B',
+            yellow: '#F4D35E',
+            lightBlue: '#93B7BE',
+            white: '#FFFFFF'
+        };
+
+        function wrapLabels(label, maxWidth) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: FONT_COLOR,
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        size: 14
+                    },
+                    titleFont: {
+                        size: 16,
+                        weight: 'bold'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: FONT_COLOR,
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: GRID_COLOR
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: FONT_COLOR,
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        };
+
+        const userComplaintsCtx = document.getElementById('userComplaintsChart').getContext('2d');
+        const userComplaintsData = {
+            labels: ['Continuidad y Racionamiento', 'Baja Presión', 'Comunicación', 'Calidad del Agua'],
+            datasets: [{
+                label: 'Número de Quejas',
+                data: [129, 105, 41, 6],
+                backgroundColor: [
+                    PALETTE.red,
+                    PALETTE.yellow,
+                    PALETTE.lightBlue,
+                    PALETTE.blue
+                ],
+                borderColor: PALETTE.white,
+                borderWidth: 2
+            }]
+        };
+        new Chart(userComplaintsCtx, {
+            type: 'doughnut',
+            data: userComplaintsData,
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    y: { ...commonChartOptions.scales.y, display: false, grid: { display: false } },
+                    x: { ...commonChartOptions.scales.x, display: false, grid: { display: false } }
+                }
+            }
+        });
+
+        const waterQualityCtx = document.getElementById('waterQualityChart').getContext('2d');
+        const waterQualityData = {
+            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+            datasets: [{
+                label: 'Nivel de Riesgo',
+                data: [0, 2, 3, 3, 2, 2, 2, 3, 3, 2],
+                backgroundColor: (context) => {
+                    const value = context.dataset.data[context.dataIndex];
+                    if (value === 3) return PALETTE.red; 
+                    if (value === 2) return PALETTE.yellow; 
+                    return PALETTE.lightBlue; 
+                },
+                borderColor: PALETTE.blue,
+                borderWidth: 1,
+                barPercentage: 0.7,
+                categoryPercentage: 0.8
+            }]
+        };
+        new Chart(waterQualityCtx, {
+            type: 'bar',
+            data: waterQualityData,
+            options: {
+                ...commonChartOptions,
+                plugins: {
+                    ...commonChartOptions.plugins,
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                const value = context.parsed.y;
+                                if (value === 3) label += 'Riesgo Alto';
+                                else if (value === 2) label += 'Riesgo Medio';
+                                else if (value === 1) label += 'Riesgo Bajo';
+                                else label += 'Sin Riesgo';
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    ...commonChartOptions.scales,
+                    y: {
+                        ...commonChartOptions.scales.y,
+                        ticks: {
+                            ...commonChartOptions.scales.y.ticks,
+                            callback: function(value, index, values) {
+                                switch(value) {
+                                    case 0: return 'Sin Riesgo';
+                                    case 1: return 'Bajo';
+                                    case 2: return 'Medio';
+                                    case 3: return 'Alto';
+                                    default: return '';
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
